@@ -15,7 +15,7 @@ public class Main {
 	private JFrame frame;
 	private Canvas canvas;
 	
-	private Thread mainThread;
+	private Thread m_thread;
 	
 	public Main(){
 		canvas = new Canvas();
@@ -30,7 +30,7 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
-		mainThread = new Thread();
+		
 	}
 	
 	

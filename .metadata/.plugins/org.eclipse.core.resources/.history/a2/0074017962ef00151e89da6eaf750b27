@@ -9,13 +9,11 @@ public class Main {
 
 	public static final String TITLE = "Remove The Kebab - The Game";
 	public static final byte VERSION = 0x01;
-	public static final int WIDTH = 1280;
-	public static final int HEIGHT = 720;
+	public static final int WIDTH = 1600;
+	public static final int HEIGHT = 900;
 	
 	private JFrame frame;
 	private Canvas canvas;
-	
-	private Thread mainThread;
 	
 	public Main(){
 		canvas = new Canvas();
@@ -23,17 +21,13 @@ public class Main {
 		canvas.requestFocus();
 		
 		frame = new JFrame(TITLE + "  v."+ VERSION);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
 		frame.add(canvas);
 		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
-		mainThread = new Thread();
 	}
-	
-	
 	
 	public static void main(String[] args){
 		new Main();

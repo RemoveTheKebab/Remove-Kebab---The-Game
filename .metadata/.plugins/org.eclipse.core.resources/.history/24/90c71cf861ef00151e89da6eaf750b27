@@ -1,0 +1,22 @@
+package com.miss_click.remove_the_kebab;
+
+import java.awt.Canvas;
+
+import javax.swing.JFrame;
+
+public class Main {
+
+	public static final String TITLE = "Remove The Kebab - The Game";
+	
+	private JFrame frame;
+	private Canvas canvas;
+	
+	public Main(){
+		frame = new JFrame("");
+	}
+	
+	public static void main(String[] args){
+		new Main();
+	}
+	
+}
