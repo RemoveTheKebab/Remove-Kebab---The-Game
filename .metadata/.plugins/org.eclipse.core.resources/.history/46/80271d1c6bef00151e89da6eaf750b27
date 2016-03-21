@@ -1,0 +1,37 @@
+package com.miss_click.remove_the_kebab.entities;
+
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import com.miss_click.remove_the_kebab.util.Input;
+import com.sun.glass.events.KeyEvent;
+
+public class Player extends Entity{
+
+	private BufferedImage img;
+	
+	public Player(){
+		try {
+			img = ImageIO.read(getClass().getResourceAsStream("/textures/bird1.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		pos.x = 100;
+		pos.y = 100;
+	}
+	
+	
+	
+	public void update() {
+		
+	}
+	
+	public void render(Graphics g) {
+		g.drawImage(img, pos.x, pos.y, null);
+	}
+
+}

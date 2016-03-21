@@ -1,9 +1,0 @@
-package com.miss_click.remove_the_kebab;
-
-public class Main {
-
-	public static void main(String[] args){
-		System.out.println("askdj");
-	}
-	
-}

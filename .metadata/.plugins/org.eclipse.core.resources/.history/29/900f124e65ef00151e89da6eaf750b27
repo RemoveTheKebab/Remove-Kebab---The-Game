@@ -1,0 +1,13 @@
+package com.miss_click.remove_the_kebab.states;
+
+public class Game extends State{
+
+	public void update(){
+		
+	}
+	
+	public void render(){
+		
+	}
+	
+}

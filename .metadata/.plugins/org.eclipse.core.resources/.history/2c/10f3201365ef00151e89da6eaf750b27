@@ -1,0 +1,97 @@
+package com.miss_click.remove_the_kebab;
+
+import java.awt.Canvas;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
+import com.miss_click.remove_the_kebab.states.StateManager;
+
+public class Main implements Runnable{
+
+	// CONSTANTS
+	public static final String TITLE = "Remove The Kebab - The Game";
+	public static final byte VERSION = 0x01;
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 720;
+	
+	// GRAPHICS
+	private JFrame frame;
+	private Canvas canvas;
+	
+	// GAME LOOP
+	private Thread mainThread;
+	public boolean running = true;
+	
+	// MANAGERS
+	public static StateManager stateManager;
+	
+	public Main(){
+		// graphics init
+		canvas = new Canvas();
+		canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		canvas.requestFocus();
+		frame = new JFrame(TITLE + "  v."+ VERSION);
+		frame.setResizable(false);
+		frame.add(canvas);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		
+		// managers init
+		stateManager = new StateManager();
+		
+		mainThread = new Thread(this, "Main Thread");
+		mainThread.start();
+	}
+	
+	/**
+	 * The game loop
+	 */
+	public void run(){
+		int updatePerSec = 60;
+	    long updateTimer = System.nanoTime();
+	    int loops;
+	    int maxFrameSkip = 10;
+	    int skipTicks = 1000000000 / updatePerSec;
+	    long timerSec = System.nanoTime();
+	    int updates = 0;
+	    int frames = 0;
+	
+	    while(running){
+	        loops = 0;
+	        while(System.nanoTime() > updateTimer && loops < maxFrameSkip){
+	            updateTimer += skipTicks;
+	            loops++;
+	            update();
+	            updates++;
+	        }
+	
+	        render();
+	        frames++;
+	
+	        if(System.nanoTime() - timerSec >= 1000000000){
+	            timerSec = System.nanoTime();
+	            System.out.println("FPS: " + frames + "\t" + "UPS: " + updates);
+	            frames = 0;
+	            updates = 0;
+	        }
+	    }
+	}
+	
+	
+	
+	public void update(){
+		
+	}
+	
+	public void render(){
+		
+	}
+	
+	public static void main(String[] args){
+		new Main();
+	}
+	
+}

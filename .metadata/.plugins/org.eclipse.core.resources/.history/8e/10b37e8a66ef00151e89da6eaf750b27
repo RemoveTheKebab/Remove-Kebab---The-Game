@@ -1,0 +1,13 @@
+package com.miss_click.remove_the_kebab.util;
+
+import java.util.ArrayList;
+
+import com.miss_click.remove_the_kebab.entities.Entity;
+
+public class EntityManager {
+
+	private ArrayList<Entity> entities;
+	
+	
+	
+}

@@ -1,0 +1,9 @@
+package com.miss_click.remove_the_kebab.entities;
+
+public class Entity {
+
+	private int index;
+	
+	
+	
+}

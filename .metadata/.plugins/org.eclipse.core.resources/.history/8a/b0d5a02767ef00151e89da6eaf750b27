@@ -1,0 +1,14 @@
+package com.miss_click.remove_the_kebab.entities;
+
+public class Entity {
+
+	private int id;
+	
+	public Entity(){
+	}
+	
+	public void setID(int id){
+		this.id = id;
+	}
+	
+}

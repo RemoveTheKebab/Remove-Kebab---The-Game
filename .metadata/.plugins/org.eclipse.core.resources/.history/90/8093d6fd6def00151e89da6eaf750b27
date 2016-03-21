@@ -1,0 +1,13 @@
+package com.miss_click.remove_the_kebab.entities;
+
+public class Projectile {
+
+	public void render(Graphics g){
+		
+	}
+	
+	public void update(){
+		
+	}
+	
+}

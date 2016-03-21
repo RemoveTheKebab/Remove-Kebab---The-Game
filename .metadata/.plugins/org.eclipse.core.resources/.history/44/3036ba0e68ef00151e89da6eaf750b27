@@ -1,0 +1,25 @@
+package com.miss_click.remove_the_kebab.entities;
+
+import java.awt.Graphics;
+
+public abstract class Entity {
+
+	private int id;
+	private boolean dead = false;
+
+	
+	public void setID(int id){
+		this.id = id;
+	}
+	
+	public int getID(){
+		return id;
+	}
+	
+	public boolean isDead(){
+		return dead;
+	}
+	
+	public abstract void update();
+	public abstract void render(Graphics g);
+}

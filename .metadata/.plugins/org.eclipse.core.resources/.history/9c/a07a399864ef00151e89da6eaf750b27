@@ -1,0 +1,20 @@
+package com.miss_click.remove_the_kebab.states;
+
+public class StateManager {
+
+	private State currentState;
+	
+	public void setState(State state){
+		currentState = state;
+	}
+	
+	public void update(){
+		if(currentState != null)
+			
+	}
+	
+	public void render(){
+		
+	}
+	
+}

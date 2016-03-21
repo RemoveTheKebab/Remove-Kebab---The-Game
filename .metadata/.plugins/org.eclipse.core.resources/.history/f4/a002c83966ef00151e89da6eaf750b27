@@ -1,0 +1,23 @@
+package com.miss_click.remove_the_kebab.states;
+
+import java.awt.Graphics;
+
+import com.miss_click.remove_the_kebab.util.EntityManager;
+
+public class Game extends State{
+
+	private EntityManager entityManager;
+	
+	public Game(){
+		
+	}
+	
+	public void update(){
+		
+	}
+	
+	public void render(Graphics g){
+		
+	}
+	
+}
