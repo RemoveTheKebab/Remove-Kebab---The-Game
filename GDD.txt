@@ -4,7 +4,7 @@
 CHARACTER:
 -size: 48*48px
 
-.Hero
+.Hero(HP:120?, DPS:3)
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjh0IbD79HLAhWDfRoKHU_5D9gQjRwIBw&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dn5q0zd3pBJk&bvm=bv.117218890,d.d2s&psig=AFQjCNGv0CuCIt0MHzLWZChI98-rfccheQ&ust=1458652857154791
 
 .Band1(accordion)
@@ -25,42 +25,42 @@ https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&
 KEBAB_ON_FOOT(+POINTS):
 -size: 48*48px
 
-.Bosnian militant(2)
+.Bosnian militant (x2) (HP:2, +2P, DPS:4)
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjkvOOJ9tHLAhWC2xoKHb5gAIYQjRwIBw&url=http%3A%2F%2Fwww.ibtimes.co.uk%2Fsrebrenica-massacre-anniversary-1995-genocide-carried-out-by-serb-forces-during-bosnian-war-1456177&bvm=bv.117218890,d.d2s&psig=AFQjCNEo7TkO9FePvByOLfmMy9WCyZSviA&ust=1458654608223983
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiTiPio9tHLAhXEnBoKHc6hA84QjRwIBw&url=http%3A%2F%2Fgeorgy-konstantinovich-zhukov.tumblr.com%2Fpost%2F53588633621%2Fbosnian-croat-forces-bosnian-war-brigadir-1&bvm=bv.117218890,d.d2s&psig=AFQjCNEo7TkO9FePvByOLfmMy9WCyZSviA&ust=1458654608223983
 
-.Iraqi militant(2)
+.Iraqi militant (x2) (HP:4, +4P, DPS:4)
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjR-szs9dHLAhVFfxoKHXKOBXgQjRwIBw&url=http%3A%2F%2Fwww.ctvnews.ca%2Fworld%2Ftribal-leaders-iraqi-government-urge-militants-to-leave-fallujah-as-humanitarian-concerns-mount-1.1630148&psig=AFQjCNE_pCMEtFLwXs8sNmkYPtyd7kUdlQ&ust=1458654563825470
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwj2g5v09dHLAhXMXRoKHZYwCPwQjRwIBw&url=http%3A%2F%2F217.218.67.229%2Fdetail%2F2014%2F06%2F28%2F369033%2Fisil-militants-flee-toward-iran-border%2F&psig=AFQjCNE_pCMEtFLwXs8sNmkYPtyd7kUdlQ&ust=1458654563825470
 
-.Kosovo militant
+.Kosovo militant (HP:5, +4P, DPS:3)
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjR5bfJ9dHLAhUGfxoKHY72ApYQjRwIBw&url=http%3A%2F%2Finserbia.info%2Ftoday%2F2013%2F11%2Fkosovo-liberation-army-crimes-serbian-policeman-beheaded-with-a-chainsaw%2F&bvm=bv.117218890,d.d2s&psig=AFQjCNGa_pyXsCLjZNmABRly7-TLxhGY1Q&ust=1458654463690081
 
-.taliban(2)
+.Taliban (x2) (HP:5, +8P, DPS:4)
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjr56OP9dHLAhUGrxoKHXPABJ0QjRwIBw&url=http%3A%2F%2Fwww.theguardian.com%2Fworld%2F2010%2Fmay%2F05%2Fafghanistan-taliban-leaders-offered-exile-peace-plan&bvm=bv.117218890,d.d2s&psig=AFQjCNHFV9-4_h6bzu91-jj3lWP5xRuVQw&ust=1458654370660401
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwia9JaS9dHLAhVB2hoKHUrmAwsQjRwIBw&url=http%3A%2F%2Fwww.newsweek.com%2F2013%2F08%2F30%2Fmullah-najibullah-too-radical-taliban-237894.html&bvm=bv.117218890,d.d2s&psig=AFQjCNHFV9-4_h6bzu91-jj3lWP5xRuVQw&ust=1458654370660401
 
-.FSA rebel(4)
+.FSA rebel (x4) (HP:2, +6P, DPS:5)
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiA6-L89NHLAhVErRoKHd8SC10QjRwIBw&url=http%3A%2F%2Fwww.theatlantic.com%2Finternational%2Farchive%2F2013%2F05%2Fevidence-points-to-syrian-rebel-use-of-sarin-gas%2F275569%2F&bvm=bv.117218890,d.d2s&psig=AFQjCNE2nvesEEApvaJJX6gaV85ayMm_1g&ust=1458654301432505
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwij4reB9dHLAhXHuBoKHc0ECrsQjRwIBw&url=https%3A%2F%2Fshariaunveiled.wordpress.com%2F2013%2F08%2F05%2Ffsa-muslim-rebels-murdering-christians-that-refuse-to-convert-to-islam-and-stealing-their-property-in-syria%2F&bvm=bv.117218890,d.d2s&psig=AFQjCNE2nvesEEApvaJJX6gaV85ayMm_1g&ust=1458654301432505
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjCuJaE9dHLAhXDbBoKHUaECyMQjRwIBw&url=http%3A%2F%2Fjafrianews.com%2F2013%2F10%2F02%2Ffsa-rebels-in-negotiations-with-asads-regime-secret-report%2F&bvm=bv.117218890,d.d2s&psig=AFQjCNE2nvesEEApvaJJX6gaV85ayMm_1g&ust=1458654301432505
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjv9rSI9dHLAhUJ1hoKHYXqBDgQjRwIBw&url=https%3A%2F%2Fshariaunveiled.wordpress.com%2F2013%2F09%2F08%2Fstate-sponsored-terrorism-the-history-of-americas-death-squads%2F&bvm=bv.117218890,d.d2s&psig=AFQjCNE2nvesEEApvaJJX6gaV85ayMm_1g&ust=1458654301432505
 
-.IS insurgent(2)
+.IS insurgent (x2) (HP:4, +8P, DPS:5)
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiz89nO9NHLAhWB1xoKHdVrAzsQjRwIBw&url=http%3A%2F%2Fciceromagazine.com%2Ffeatures%2Fshould-insurgents-like-isis-control-territory%2F&bvm=bv.117218890,d.d2s&psig=AFQjCNH2FcNfMXt0QEYtJKOoZnuCi-vnCQ&ust=1458654234836142
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwi8rpPg9NHLAhWFQBoKHXPFDckQjRwIBw&url=http%3A%2F%2Fwww.snopes.com%2F2015%2F11%2F16%2Fisis-kill-list%2F&bvm=bv.117218890,d.d2s&psig=AFQjCNEAZpZwwCm7_k4zsp9jF-AeAhVkrA&ust=1458654267755981
 
-.refugee(3)
+.Refugee (x3) (HP:2, +4P, DPS:1)
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjz7Pm99NHLAhUHbBoKHZZlDloQjRwIBw&url=http%3A%2F%2Fthetalon.news%2F4549%2Fnews-now%2Fthe-refugee-crisis-europe%2F&bvm=bv.117218890,d.d2s&psig=AFQjCNFffaDJ7RCb4zsmHD2CzeUb0vCb1g&ust=1458654169965458
 
-.Albanian insurgent
+.Albanian insurgent (HP:2, +6P, DPS:3)
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjioYOg9NHLAhXJCBoKHXrDDcEQjRwIBw&url=http%3A%2F%2Fwww.akfiles.com%2Fforums%2Fshowthread.php%3Ft%3D217264&bvm=bv.117218890,d.d2s&psig=AFQjCNHp_ogz4lN0Juo_P5wM6PAarokY6w&ust=1458654084635143
 
-.Hamas militant(2)
+.Hamas militant (x2) (HP:3, +6P, DPS:4)
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiuu8L389HLAhWL2xoKHR76C5AQjRwIBw&url=http%3A%2F%2Fwww.clarionproject.org%2Fanalysis%2Fisraels-fbi-links-islamic-relief-usa-charity-hamas&bvm=bv.117218890,d.d2s&psig=AFQjCNHmL1yOnL-PzHvDI75TTiLiNDjEdw&ust=1458654042436726
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjNsqr989HLAhVGXBoKHarjB-EQjRwIBw&url=http%3A%2F%2Fwww.yourmiddleeast.com%2Fnews%2Ffive-hamas-militants-killed-in-gaza-tunnel-collapse_24519&bvm=bv.117218890,d.d2s&psig=AFQjCNHmL1yOnL-PzHvDI75TTiLiNDjEdw&ust=1458654042436726
 
-.African Militant (x3)
+.African Militant (x3) (HP:2, +5P, DPS:3)
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiM7Z_i89HLAhVFLhoKHXC7BXUQjRwIBw&url=http%3A%2F%2Fusatoday30.usatoday.com%2Fnews%2Fworld%2F2006-10-21-hornofafrica_x.htm&bvm=bv.117218890,d.d2s&psig=AFQjCNGVCrRxt9xy35qVAvlF3NeDmNdXFQ&ust=1458653998587734
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjYzLLm89HLAhVHXBoKHUkOAWIQjRwIBw&url=http%3A%2F%2Fwww.usnews.com%2Fnews%2Farticles%2F2013%2F09%2F30%2Fwhat-you-need-to-know-about-terrorism-in-east-africa&bvm=bv.117218890,d.d2s&psig=AFQjCNGVCrRxt9xy35qVAvlF3NeDmNdXFQ&ust=1458653998587734
 https://www.google.si/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjQu-rr89HLAhWGXBoKHTqyAcQQjRwIBw&url=http%3A%2F%2Fwww.presstv.ir%2FDetail%2F2015%2F05%2F11%2F410449%2FCentral-African-Republic-CAR-France&bvm=bv.117218890,d.d2s&psig=AFQjCNGVCrRxt9xy35qVAvlF3NeDmNdXFQ&ust=1458653998587734
