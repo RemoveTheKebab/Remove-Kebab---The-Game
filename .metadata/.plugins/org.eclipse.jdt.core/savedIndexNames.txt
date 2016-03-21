@@ -1,0 +1,20 @@
+INDEX VERSION 1.127+E:\Projects\Java\RemoveTheKebab\Remove-Kebab---The-Game\.metadata\.plugins\org.eclipse.jdt.core
+2960264438.index
+2136085965.index
+2446575182.index
+731771320.index
+240177531.index
+881408976.index
+106823307.index
+3062161905.index
+3735457145.index
+652615885.index
+3539192749.index
+575484432.index
+1311092791.index
+403120311.index
+2298606956.index
+1363554851.index
+4250515517.index
+3049059109.index
+4202435353.index

@@ -1,0 +1,15 @@
+package com.miss_click.remove_the_kebab;
+
+public class Main {
+
+	private Canvas canvas;
+	
+	public Main(){
+		
+	}
+	
+	public static void main(String[] args){
+		new Main();
+	}
+	
+}
