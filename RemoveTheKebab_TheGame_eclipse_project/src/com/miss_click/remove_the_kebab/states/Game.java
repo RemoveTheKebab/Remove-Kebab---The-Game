@@ -14,15 +14,17 @@ import com.sun.glass.events.KeyEvent;
 public class Game extends State{
 
 	public static EntityManager entityManager;
-	private EnemySpawner enemySpawner;
-	private static long score = 0;
+	public static EnemySpawner enemySpawner;
 	
+	public static final int BORDER_X = 260;
 	public static final Color PAUSE_SHADE = new Color(0,0,0,150);
 	public static final Color PAUSE_TXT = new Color(200,200,200);
 	public static final Color PAUSE_RED_TXT = new Color(255,0,0);
 	public static final Font PAUSE_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 32);
 	public static final Font PAUSE_RED_FONT = new Font(Font.SANS_SERIF, Font.BOLD + Font.ITALIC, 28);
 	public static final Font SCORE_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 28);
+	
+	private static long score = 0;
 	private boolean paused = false;
 	
 	public Game(){
@@ -37,6 +39,7 @@ public class Game extends State{
 		}
 		
 		if(!paused){
+			enemySpawner.spawnEnemy();
 			entityManager.update();
 		}else{
 			if(Input.keyPressed(KeyEvent.VK_M)){

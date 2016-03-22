@@ -1,0 +1,25 @@
+package com.miss_click.remove_the_kebab.entities;
+
+import java.awt.Graphics2D;
+
+import com.miss_click.remove_the_kebab.Main;
+
+public abstract class Enemy extends Entity{
+	
+	protected Enemy(){
+		pos.y = (int)(Math.random() * (Main.HEIGHT - size.y));
+	}
+	
+	public void update() {
+		pos.x += speed;
+		updateEnemy();
+	}
+
+	public void render(Graphics2D g) {	
+		renderEnemy(g);
+	}
+	
+	public abstract void renderEnemy(Graphics2D g);
+	public abstract void updateEnemy();
+	
+}

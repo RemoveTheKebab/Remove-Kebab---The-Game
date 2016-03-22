@@ -1,0 +1,48 @@
+package com.miss_click.remove_the_kebab.entities.enemies;
+
+import java.awt.Graphics2D;
+
+import com.miss_click.remove_the_kebab.Main;
+import com.miss_click.remove_the_kebab.entities.Enemy;
+import com.miss_click.remove_the_kebab.entities.Entity;
+import com.miss_click.remove_the_kebab.entities.EntityType;
+import com.miss_click.remove_the_kebab.states.Game;
+import com.miss_click.remove_the_kebab.util.Vector2i;
+
+public class TestEnemy extends Enemy{
+
+	public TestEnemy(){
+		super();
+		type = EntityType.ENEMY;
+		
+		// graphics
+		sprite = Main.spriteManager.getSprite("bird");
+		
+		// properties
+		size = new Vector2i(sprite.size.x, sprite.size.y);
+		pos = new Vector2i(200, Main.HEIGHT / 2 - size.y / 2);
+		fireRate = 1000000000 / 5;
+		speed = 5;
+		life = 1000;
+		damage = 100;
+		projectileDir = PR_RIGHT;
+	}
+	
+	public void renderEnemy(Graphics2D g) {
+		sprite.render(g, pos);
+	}
+
+	public void updateEnemy() {
+		
+	}
+
+	public void die() {
+		Entity player = Game.entityManager.getFirtsByType(EntityType.PLAYER);
+		player.kill(type);
+	}
+
+	public void kill(EntityType type) {
+		
+	}
+
+}

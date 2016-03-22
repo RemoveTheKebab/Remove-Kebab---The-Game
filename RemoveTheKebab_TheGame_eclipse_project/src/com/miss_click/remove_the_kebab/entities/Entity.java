@@ -67,7 +67,6 @@ public abstract class Entity {
 	}
 	
 	protected void shoot(){
-		if(Input.keyDown(KeyEvent.VK_SPACE))
 			if(System.nanoTime() - attackTimer >= fireRate){
 				attackTimer = System.nanoTime();
 				if(projectileDir)

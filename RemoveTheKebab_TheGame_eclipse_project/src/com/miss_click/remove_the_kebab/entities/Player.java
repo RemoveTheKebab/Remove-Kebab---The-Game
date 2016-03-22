@@ -21,7 +21,7 @@ public class Player extends Entity{
 		// initializing properties
 		size = new Vector2i(sprite.size.x, sprite.size.y);
 		pos = new Vector2i(200, Main.HEIGHT / 2 - size.y / 2);
-		fireRate = 1000000000 / 5;
+		fireRate = 10000000000L / 10;
 		speed = 5;
 		life = 1000;
 		damage = 100;
@@ -50,7 +50,9 @@ public class Player extends Entity{
 		checkLife();
 		updateProjectiles();
 		move();
-		shoot();
+		
+		if(Input.keyDown(KeyEvent.VK_SPACE))
+			shoot();
 	}
 	
 	public void render(Graphics2D g) {
@@ -63,6 +65,7 @@ public class Player extends Entity{
 			Game.addScore(10);
 		}else if(type == EntityType.BOSS){
 			Game.addScore(2000);
+			Game.enemySpawner.removeBoss();
 		}else if(type == EntityType.CIVILIAN){
 			Game.addScore(-100);
 		}

@@ -8,10 +8,10 @@ public class EnemySpawner {
 
 	public static final int ENEMY_COUNT = 1;
 	public static final int BOSS_COUNT = 1;
-	public static final long MIN_BOSS_PERIOID = 2500000000L; 	// 2.5 seconds
+	public static final long MIN_BOSS_PERIOID = 500000000L; 	// 2.5 seconds
 	public static final long MIN_SPAW_PERIOD = 250000000L; 		// 1/4 second
 	public static final long MAX_SPAW_PERIOD = 3000000000L; 	// 3 seconds
-	public static final int START_SCORE_REQ = 2000;
+	public static final int START_SCORE_REQ = 1000;
 	public static int ADD_SCORE_REQ = 4000;
 	
 	private long spawnTimer = System.nanoTime();
@@ -53,8 +53,10 @@ public class EnemySpawner {
 					}
 				}
 			}else{
-				if(bossCounter == 0)
+				if(bossCounter == 0){
 					bossTime = false;
+					bossSpawned = false;
+				}
 			}
 		}else{
 			if(spawnPeriod > MIN_SPAW_PERIOD)
@@ -67,6 +69,10 @@ public class EnemySpawner {
 				spawnRandomEnemy();
 			}
 		}
+	}
+	
+	public void removeBoss(){
+		bossCounter--;
 	}
 	
 	private void spawnRandomBoss(){
@@ -84,12 +90,13 @@ public class EnemySpawner {
 	private void spawnRandomEnemy(){
 		Enemy enemy = null;
 		int randomGen = (int)(Math.random() * ENEMY_COUNT - 1);
+		int randomCount = (int)(Math.random() * 2 + 1);
+		
 		switch(randomGen){
 		case 0:
-			enemy = new TestEnemy();
+			for(int i=0; i < randomCount; i++)
+				Game.entityManager.addEntity(new TestEnemy());
 			break;
 		}
-		Game.entityManager.addEntity(enemy);
 	}
-	
 }
