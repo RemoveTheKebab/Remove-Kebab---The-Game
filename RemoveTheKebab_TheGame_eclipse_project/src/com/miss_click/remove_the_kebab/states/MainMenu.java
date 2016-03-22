@@ -15,6 +15,7 @@ public class MainMenu extends State{
 	public static final Color FONT_COLOR_IDEA = new Color(56,121,196);
 	public static final Font CREDITS_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 20);
 	public static final Font TITLE_FONT = new Font(Font.SANS_SERIF, Font.BOLD,70);
+	public static final Font VERSION_FONT = new Font(Font.SANS_SERIF, Font.BOLD,16);
 	
 	private Button playButton;
 	private Sprite background;

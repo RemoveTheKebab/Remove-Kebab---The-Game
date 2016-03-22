@@ -18,7 +18,7 @@ public class Game extends State{
 	private static long score = 0;
 	
 	public static final Color PAUSE_SHADE = new Color(0,0,0,150);
-	public static final Color PAUSE_TXT = new Color(170,170,170);
+	public static final Color PAUSE_TXT = new Color(200,200,200);
 	public static final Color PAUSE_RED_TXT = new Color(255,0,0);
 	public static final Font PAUSE_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 32);
 	public static final Font PAUSE_RED_FONT = new Font(Font.SANS_SERIF, Font.BOLD + Font.ITALIC, 28);
@@ -38,6 +38,10 @@ public class Game extends State{
 		
 		if(!paused){
 			entityManager.update();
+		}else{
+			if(Input.keyPressed(KeyEvent.VK_M)){
+				Main.stateManager.setState(new MainMenu());
+			}
 		}
 	}
 	
@@ -57,7 +61,10 @@ public class Game extends State{
 			g.drawString("PAUSED - press ESC to resume", 400, Main.HEIGHT / 2);
 			g.setColor(PAUSE_RED_TXT);
 			g.setFont(PAUSE_RED_FONT);
-			g.drawString("... with the massacre", 800, 600);
+			g.drawString("... with the massacre", 800, Main.HEIGHT / 2 + 40);
+			g.setColor(PAUSE_TXT);
+			g.setFont(PAUSE_FONT);
+			g.drawString("OR press M to get back to Main Menu", 400, Main.HEIGHT / 2 + 120);
 		}
 	}
 	
