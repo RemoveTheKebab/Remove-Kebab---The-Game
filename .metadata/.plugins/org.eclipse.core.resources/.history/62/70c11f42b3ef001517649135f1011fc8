@@ -1,0 +1,15 @@
+package com.miss_click.remove_the_kebab.entities;
+
+import java.awt.Graphics;
+
+public class Enemy extends Entity{
+
+	public void update() {
+		
+	}
+
+	public void render(Graphics g) {	
+		
+	}
+
+}

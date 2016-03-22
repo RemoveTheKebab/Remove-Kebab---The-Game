@@ -1,0 +1,35 @@
+package com.miss_click.remove_the_kebab.states;
+
+import java.awt.Graphics;
+
+import com.miss_click.remove_the_kebab.entities.Player;
+import com.miss_click.remove_the_kebab.util.EntityManager;
+
+public class Game extends State{
+
+	public static EntityManager entityManager;
+	
+	private static long score = 0;
+	
+	public Game(){
+		entityManager = new EntityManager();
+		entityManager.addEntity(new Player());
+	}
+	
+	public void update(){
+		entityManager.update();
+	}
+	
+	public void render(Graphics g){
+		entityManager.render(g);
+	}
+	
+	public static long getScore(){
+		return score;
+	}
+	
+	public static void setScore(long score){
+		Game.score = score;
+	}
+	
+}

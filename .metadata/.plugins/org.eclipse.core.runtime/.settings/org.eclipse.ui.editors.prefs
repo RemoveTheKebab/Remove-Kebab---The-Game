@@ -1,2 +1,8 @@
+AbstractTextEditor.Color.FindScope=105,105,105
+currentLineColor=215,228,242
 eclipse.preferences.version=1
+hyperlinkColor=51,153,255
+lineNumberColor=105,105,105
 overviewRuler_migration=migrated_3.1
+printMarginColor=160,160,160
+spellingEngine=org.eclipse.jdt.internal.ui.text.spelling.DefaultSpellingEngine

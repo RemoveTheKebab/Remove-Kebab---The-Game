@@ -1,0 +1,25 @@
+package com.miss_click.remove_the_kebab.graphics;
+
+import java.awt.Graphics;
+
+import com.miss_click.remove_the_kebab.util.Vector2i;
+
+public class Button {
+
+	private Vector2i pos;
+	private Sprite buttonSprite;
+	
+	public Button(int x, int y, Sprite sprite){
+		buttonSprite = sprite;
+		pos = new Vector2i();
+	}
+	
+	public void update(){
+		
+	}
+	
+	public void render(Graphics g){
+		
+	}
+	
+}

@@ -1,0 +1,21 @@
+package com.miss_click.remove_the_kebab.entities.enemies;
+
+import java.awt.Graphics;
+
+import com.miss_click.remove_the_kebab.entities.Enemy;
+
+public class TestEnemy extends Enemy{
+
+	public Enemy(){
+		
+	}
+	
+	public void renderEnemy(Graphics g) {
+		
+	}
+
+	public void updateEnemy() {
+		
+	}
+
+}

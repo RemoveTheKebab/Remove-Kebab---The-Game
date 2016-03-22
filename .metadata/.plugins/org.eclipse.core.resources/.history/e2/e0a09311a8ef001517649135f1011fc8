@@ -1,0 +1,27 @@
+package com.miss_click.remove_the_kebab.states;
+
+import java.awt.Graphics;
+
+import com.miss_click.remove_the_kebab.Main;
+import com.miss_click.remove_the_kebab.graphics.Button;
+import com.miss_click.remove_the_kebab.graphics.Sprite;
+
+public class MainMenu extends State{
+
+	private Button playButton;
+	
+	public MainMenu(){
+		Sprite pbsn = Main.spriteManager.getSprite("play_button_normal");
+		Sprite pbsh = Main.spriteManager.getSprite("play_button_hovered");
+		playButton = new Button();
+	}
+	
+	public void update() {
+		
+	}
+
+	public void render(Graphics g) {
+		
+	}
+
+}

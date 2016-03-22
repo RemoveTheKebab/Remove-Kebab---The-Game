@@ -1,0 +1,19 @@
+package com.miss_click.remove_the_kebab.util;
+
+public class FileUtil {
+
+	public static void writeInt(String path, int val){
+		
+	}
+	
+	public static int readInt(String path){
+		int val = 0;
+		
+		try{
+			
+		}
+		
+		return val;
+	}	
+	
+}

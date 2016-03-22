@@ -1,0 +1,75 @@
+package com.miss_click.remove_the_kebab.entities;
+
+import java.awt.Graphics;
+import java.util.ArrayList;
+
+import com.miss_click.remove_the_kebab.graphics.Sprite;
+import com.miss_click.remove_the_kebab.util.Input;
+import com.miss_click.remove_the_kebab.util.Vector2i;
+import com.sun.glass.events.KeyEvent;
+
+public abstract class Entity {
+
+	public static final boolean PR_RIGHT = true;
+	public static final boolean PR_LEFT = false;
+	
+	// properties
+	protected int id;
+	protected boolean dead = false;
+	protected Vector2i pos;
+	protected int speed;
+	protected Vector2i size;
+	protected int life;
+	
+	// attack props
+	protected long fireRate;
+	protected long attackTimer = System.nanoTime();
+	protected ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+	protected boolean projectileDir;
+	private boolean shooting = false;
+	
+	// graphics
+	protected Sprite sprite; // temporarily
+	
+	public void setID(int id){
+		this.id = id;
+	}
+	
+	public int getID(){
+		return id;
+	}
+	
+	public boolean isDead(){
+		return dead;
+	}
+	
+	protected void updateProjectiles(){
+		for(int i=0; i < projectiles.size(); i++){
+			projectiles.get(i).update();
+			if(projectiles.get(i).dead)
+				projectiles.remove(i);
+		}
+	}
+	
+	protected void renderProjectiles(Graphics g){
+		for(int i=0; i < projectiles.size(); i++){
+			projectiles.get(i).render(g);
+		}
+	}
+	
+	protected void shoot(){
+		if(Input.keyDown(KeyEvent.VK_SPACE))
+			if(System.nanoTime() - attackTimer >= fireRate){
+				attackTimer = System.nanoTime();
+				if(projectileDir)
+					projectiles.add(new Projectile(pos.x + size.x, pos.y + size.y / 2, true));
+				else
+					projectiles.add(new Projectile(pos.x, pos.y + size.y / 2, false));
+			}
+	}
+	
+	public abstract void update();
+	public abstract void render(Graphics g);
+	
+	
+}

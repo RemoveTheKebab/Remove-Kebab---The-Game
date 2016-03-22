@@ -1,0 +1,31 @@
+package com.miss_click.remove_the_kebab.entities.bosses;
+
+import java.awt.Graphics;
+
+import com.miss_click.remove_the_kebab.entities.Enemy;
+import com.miss_click.remove_the_kebab.entities.Entity;
+import com.miss_click.remove_the_kebab.entities.EntityType;
+import com.miss_click.remove_the_kebab.states.Game;
+
+public class TestBoss extends Enemy{
+
+	public TestBoss(){
+		type = EntityType.BOSS;
+	}
+	
+	public void renderEnemy(Graphics g) {
+		
+	}
+
+	public void updateEnemy() {
+		
+	}
+
+	public void die() {
+		Entity player = Game.entityManager.getFirtsByType(EntityType.PLAYER);
+	}
+	
+	public void kill(EntityType type) {
+		
+	}
+}

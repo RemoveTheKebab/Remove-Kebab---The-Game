@@ -1,0 +1,153 @@
+package com.miss_click.remove_the_kebab;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import javax.swing.JFrame;
+
+import com.miss_click.remove_the_kebab.graphics.Button;
+import com.miss_click.remove_the_kebab.states.Game;
+import com.miss_click.remove_the_kebab.states.StateManager;
+import com.miss_click.remove_the_kebab.util.Input;
+import com.miss_click.remove_the_kebab.util.SpriteManager;
+
+public class Main implements Runnable{
+
+	// CONSTANTS
+	public static final String TITLE = "Remove The Kebab - The Game";
+	public static final byte VERSION = 0x01;
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 720;
+	
+	// GRAPHICS
+	private JFrame frame;
+	private Canvas canvas;
+	private Button escapeButton;
+	
+	// GAME LOOP
+	private Thread mainThread;
+	public boolean running = true;
+	
+	// MANAGERS
+	public static StateManager stateManager;
+	public static SpriteManager spriteManager;
+	
+	public Main(){
+		// graphics init
+		canvas = new Canvas();
+		canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		frame = new JFrame(TITLE + "  v."+ VERSION);
+		frame.setResizable(false);
+		frame.add(canvas);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		
+		// managers init
+		spriteManager = new SpriteManager();
+		stateManager = new StateManager();
+		Input input = new Input();
+		canvas.addKeyListener(input);
+		canvas.addMouseListener(input);
+		canvas.addMouseMotionListener(input);
+		
+		mainThread = new Thread(this, "Main Thread");
+		mainThread.start();
+	}
+	
+	/**
+	 * The game loop
+	 */
+	public void run(){
+		init();
+		
+		int updatePerSec = 60;
+	    long updateTimer = System.nanoTime();
+	    int loops;
+	    int maxFrameSkip = 10;
+	    int skipTicks = 1000000000 / updatePerSec;
+	    long timerSec = System.nanoTime();
+	    int updates = 0;
+	    int frames = 0;
+	
+	    while(running){
+	        loops = 0;
+	        while(System.nanoTime() > updateTimer && loops < maxFrameSkip){
+	            updateTimer += skipTicks;
+	            loops++;
+	            update();
+	            updates++;
+	        }
+	
+	        render();
+	        frames++;
+	
+	        if(System.nanoTime() - timerSec >= 1000000000){
+	            timerSec = System.nanoTime();
+	            System.out.println("FPS: " + frames + "\t" + "UPS: " + updates);
+	            frames = 0;
+	            updates = 0;
+	        }
+	    }
+	}
+	
+	private void init(){
+		loadTextures();
+		
+		canvas.requestFocus();
+		stateManager.setState(new Game());
+		
+		// Initializing the button to exit the game
+		Sprite exitButtonNormal = spriteManager.getSprite("exit_button_normal")
+		escapeButton = new Button(WIDTH - 20,0,);
+	}
+	
+	private void update(){
+		stateManager.update();
+	}
+	
+	private void render(){
+		BufferStrategy bs = canvas.getBufferStrategy();
+		if(bs == null){
+			canvas.createBufferStrategy(3);
+			return;
+		}
+		
+		Graphics g = bs.getDrawGraphics();
+		
+		// clearing the screen
+		g.setColor(Color.black);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+		stateManager.render(g);
+		
+		g.dispose();
+		bs.show();
+	}
+	
+	private void loadTextures(){
+		URI uri;
+		try {
+			uri = getClass().getResource("/textures/").toURI();
+			File dir = new File(uri);
+			String[] files = dir.list();
+			for(int i=0; i < files.length; i++){
+				spriteManager.loadSpriteSheet(files[i]);
+			}
+			
+		} catch (URISyntaxException e) {
+			e.printStackTrace(); 
+		}
+	}
+	
+	public static void main(String[] args){
+		new Main();
+	}
+	
+}

@@ -1,0 +1,11 @@
+package com.miss_click.remove_the_kebab.entities;
+
+public class EnemySpawner {
+
+	private long spawnTimer = System.nanoTime();
+	
+	public void spawnEnemy(){
+		
+	}
+	
+}

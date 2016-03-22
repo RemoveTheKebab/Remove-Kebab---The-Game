@@ -1,0 +1,7 @@
+package com.miss_click.remove_the_kebab.entities.bosses;
+
+import com.miss_click.remove_the_kebab.entities.Enemy;
+
+public class TestBoss extends Enemy{
+
+}

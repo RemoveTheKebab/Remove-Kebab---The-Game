@@ -1,0 +1,30 @@
+package com.miss_click.remove_the_kebab.entities;
+
+import com.miss_click.remove_the_kebab.entities.enemies.TestEnemy;
+import com.miss_click.remove_the_kebab.states.Game;
+
+public class EnemySpawner {
+
+	public static final int ENEMY_COUNT = 0;
+	
+	private long spawnTimer = System.nanoTime();
+	private long spawnPeriod = 3000000000L; // 3 seconds
+	
+	public void spawnEnemy(){
+		if(System.nanoTime() - spawnTimer >= spawnPeriod){
+			spawnTimer = System.nanoTime();
+			Enemy enemy;
+			
+			int randomGen = (int)(Math.random() * ENEMY_COUNT - 1);
+			switch(randomGen){
+			case 0:
+				enemy = new TestEnemy();
+				break;
+				
+			}
+			
+			Game.entityManager.addEntity(enemy);
+		}
+	}
+	
+}

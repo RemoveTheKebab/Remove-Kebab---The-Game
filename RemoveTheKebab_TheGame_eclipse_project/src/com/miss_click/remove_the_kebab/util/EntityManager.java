@@ -1,9 +1,10 @@
 package com.miss_click.remove_the_kebab.util;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import com.miss_click.remove_the_kebab.entities.Entity;
+import com.miss_click.remove_the_kebab.entities.EntityType;
 
 public class EntityManager {
 
@@ -20,6 +21,10 @@ public class EntityManager {
 		count++;
 	}
 	
+	public ArrayList<Entity> getEntities(){
+		return entities;
+	}
+	
 	public void update(){
 		for(int i=0; i < entities.size(); i++){
 			Entity entity = entities.get(i);
@@ -34,10 +39,21 @@ public class EntityManager {
 		}
 	}
 	
-	public void render(Graphics g){
+	public void render(Graphics2D g){
 		for(int i=0; i < entities.size(); i++){
 			entities.get(i).render(g);
 		}
+	}
+	
+	public Entity getFirtsByType(EntityType type){
+		Entity e;
+		for(int i=0; i < entities.size(); i++){
+			e = entities.get(i);
+			if(e.getType() == type)
+				return e;
+		}
+		
+		return null;
 	}
 	
 }

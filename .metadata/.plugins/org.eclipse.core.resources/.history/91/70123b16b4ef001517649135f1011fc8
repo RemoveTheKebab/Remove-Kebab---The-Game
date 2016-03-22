@@ -1,0 +1,26 @@
+package com.miss_click.remove_the_kebab.entities;
+
+import java.awt.Graphics;
+
+public abstract class Enemy extends Entity{
+
+	public static final int[] ENEMY_TYPES = new int[]{
+			
+	};
+	
+	public Enemy(int y){
+		
+	}
+	
+	public void update() {
+		updateEnemy();
+	}
+
+	public void render(Graphics g) {	
+		renderEnemy(g);
+	}
+
+	public abstract void renderEnemy(Graphics g);
+	public abstract void updateEnemy();
+	
+}

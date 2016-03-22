@@ -1,0 +1,31 @@
+package com.miss_click.remove_the_kebab.util;
+
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+
+import javax.imageio.ImageIO;
+
+import com.miss_click.remove_the_kebab.graphics.Sprite;
+
+public class SpriteManager {
+
+	private HashMap<String, Sprite> sprites;
+	
+	public void loadSpriteSheet(String path){
+		try {
+			BufferedImage img = ImageIO.read(getClass().getResourceAsStream("/textures/" + path + "/" + path + ".png"));
+			InputStreamReader isr = new InputStreamReader(getClass().getResourceAsStream("/textures/" + path + "/" + path + ".tex"));
+			BufferedReader br = new BufferedReader(isr);
+			
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+}
+  

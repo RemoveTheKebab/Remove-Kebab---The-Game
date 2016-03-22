@@ -54,6 +54,7 @@ public class Input implements KeyListener, MouseMotionListener, MouseListener{
 	
 	
 	private static boolean[] keys = new boolean[512];
+	private static boolean[] keysP = new boolean[512];
 	
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = true;
@@ -61,6 +62,7 @@ public class Input implements KeyListener, MouseMotionListener, MouseListener{
 
 	public void keyReleased(KeyEvent e) {
 		keys[e.getKeyCode()] = false;
+		keysP[e.getKeyCode()] = false;
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -69,6 +71,15 @@ public class Input implements KeyListener, MouseMotionListener, MouseListener{
 
 	public static boolean keyDown(int key){
 		return keys[key];
+	}
+	
+	public static boolean keyPressed(int key){
+		boolean result = keys[key] && !keysP[key];
+		
+		if(result)
+			keysP[key] = true;
+		
+		return result;
 	}
 	
 }

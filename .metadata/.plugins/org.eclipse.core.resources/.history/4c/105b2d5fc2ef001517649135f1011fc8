@@ -1,0 +1,66 @@
+package com.miss_click.remove_the_kebab.states;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+
+import com.miss_click.remove_the_kebab.Main;
+import com.miss_click.remove_the_kebab.entities.Player;
+import com.miss_click.remove_the_kebab.util.EntityManager;
+import com.miss_click.remove_the_kebab.util.Input;
+import com.sun.glass.events.KeyEvent;
+
+public class Game extends State{
+
+	public static EntityManager entityManager;
+	private static long score = 0;
+	
+	public static final Color PAUSE_SHADE = new Color(0,0,0,150);
+	public static final Color PAUSE_TXT = new Color(170,170,170);
+	public static final Color PAUSE_RED_TXT = new Color(255,0,0);
+	public static final Font PAUSE_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 32);
+	public static final Font PAUSE_RED_FONT = new Font(Font.SANS_SERIF, Font.BOLD + Font.ITALIC, 28);
+	private boolean paused = false;
+	
+	public Game(){
+		entityManager = new EntityManager();
+		entityManager.addEntity(new Player());
+	}
+	
+	public void update(){
+		if(Input.keyPressed(KeyEvent.VK_ESCAPE)){
+			paused = !paused;
+		}
+		
+		if(!paused)
+			entityManager.update();
+	}
+	
+	public void render(Graphics g){
+		entityManager.render(g);
+		
+		if(paused){
+			g.setColor(PAUSE_SHADE);
+			g.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+			g.setColor(PAUSE_TXT);
+			g.setFont(PAUSE_FONT);
+			g.drawString("PAUSED - press ESC to resume", 400, Main.HEIGHT / 2);
+			g.setColor(PAUSE_RED_TXT);
+			g.setFont(PAUSE_RED_FONT);
+			g.drawString("... with the massacre", 700, 450);
+		}
+	}
+	
+	public static long getScore(){
+		return score;
+	}
+	
+	public static void setScore(long score){
+		Game.score = score;
+	}
+	
+	public static void addScore(long score){
+		Game.score += score;
+	}
+	
+}

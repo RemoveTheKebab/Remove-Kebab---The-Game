@@ -4,7 +4,6 @@
 <fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="com.miss_click.remove_the_kebab.util.EntityManager"/>
 <fullyQualifiedTypeName name="com.miss_click.remove_the_kebab.entities.Entity"/>
-<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
 <fullyQualifiedTypeName name="com.miss_click.remove_the_kebab.entities.Player"/>
 <fullyQualifiedTypeName name="java.awt.event.KeyListener"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseMotionListener"/>
@@ -13,4 +12,9 @@
 <fullyQualifiedTypeName name="com.sun.glass.events.KeyEvent"/>
 <fullyQualifiedTypeName name="com.miss_click.remove_the_kebab.Main"/>
 <fullyQualifiedTypeName name="java.awt.Graphics"/>
+<fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="com.miss_click.remove_the_kebab.util.SpriteManager"/>
+<fullyQualifiedTypeName name="java.net.URI"/>
 </qualifiedTypeNameHistroy>

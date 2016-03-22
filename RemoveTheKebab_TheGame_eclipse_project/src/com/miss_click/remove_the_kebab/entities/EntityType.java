@@ -1,0 +1,5 @@
+package com.miss_click.remove_the_kebab.entities;
+
+public enum EntityType {
+	PLAYER, ENEMY, BOSS, CIVILIAN
+}

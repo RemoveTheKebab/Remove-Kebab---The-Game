@@ -1,0 +1,40 @@
+package com.miss_click.remove_the_kebab.entities;
+
+import java.awt.Graphics;
+
+import com.miss_click.remove_the_kebab.Main;
+import com.miss_click.remove_the_kebab.graphics.Sprite;
+import com.miss_click.remove_the_kebab.util.Vector2i;
+
+public class Projectile {
+
+	private Sprite sprite;
+	private int speed;
+	private boolean dead = false;
+	private Vector2i pos;
+	
+	public Projectile(int x, int y, boolean dir){
+		pos = new Vector2i(x, y);
+		
+		if(dir)
+			speed = 6;
+		else
+			speed = -6;
+	}
+	
+	public void render(Graphics g){
+		sprite.render(g, pos);
+	}
+	
+	public void update(){
+		if(!dead){
+			// move
+			pos.x += speed;
+			pos.y += speed;
+			
+			// check  if out of bounds
+			if(pos.x >= Main.WIDTH || pos.x <= -sprite.size.x)
+		}
+	}
+	
+}

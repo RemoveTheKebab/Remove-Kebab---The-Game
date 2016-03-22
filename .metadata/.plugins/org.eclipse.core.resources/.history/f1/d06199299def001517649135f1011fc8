@@ -1,0 +1,31 @@
+package com.miss_click.remove_the_kebab.graphics;
+
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+
+import com.miss_click.remove_the_kebab.util.Input;
+import com.miss_click.remove_the_kebab.util.Vector2i;
+
+public class Button {
+
+	private Vector2i pos;
+	private Sprite buttonSprite;
+	
+	public Button(int x, int y, Sprite sprite){
+		buttonSprite = sprite;
+		pos = new Vector2i(x, y);
+	}
+	
+	public void update(){
+		if(Input.isMouseButtonPressed(MouseEvent.BUTTON1)){
+			if(){
+				
+			}
+		}
+	}
+	
+	public void render(Graphics g){
+		buttonSprite.render(g, pos);
+	}
+	
+}

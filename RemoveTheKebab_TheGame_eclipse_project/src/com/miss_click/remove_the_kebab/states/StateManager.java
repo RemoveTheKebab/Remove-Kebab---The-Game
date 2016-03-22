@@ -1,6 +1,6 @@
 package com.miss_click.remove_the_kebab.states;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class StateManager {
 
@@ -15,7 +15,7 @@ public class StateManager {
 			currentState.update();
 	}
 	
-	public void render(Graphics g){
+	public void render(Graphics2D g){
 		if(currentState != null)
 			currentState.render(g);
 	}

@@ -1,0 +1,21 @@
+package com.miss_click.remove_the_kebab.entities.bosses;
+
+import java.awt.Graphics;
+
+import com.miss_click.remove_the_kebab.entities.Enemy;
+
+public class TestBoss extends Enemy{
+
+	@Override
+	public void renderEnemy(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateEnemy() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

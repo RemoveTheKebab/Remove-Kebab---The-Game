@@ -1,58 +1,75 @@
 package com.miss_click.remove_the_kebab.entities;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
+import java.awt.Graphics2D;
 
 import com.miss_click.remove_the_kebab.Main;
+import com.miss_click.remove_the_kebab.states.Game;
 import com.miss_click.remove_the_kebab.util.Input;
 import com.miss_click.remove_the_kebab.util.Vector2i;
 import com.sun.glass.events.KeyEvent;
 
 public class Player extends Entity{
 
-	private BufferedImage img;
+	private int highscore;
 	
 	public Player(){
-		try {
-			img = ImageIO.read(getClass().getResourceAsStream("/textures/bird1.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		type = EntityType.PLAYER;
 		
-		size = new Vector2i(48, 48);
+		// graphics
+		sprite = Main.spriteManager.getSprite("bird");
+		
+		// initializing properties
+		size = new Vector2i(sprite.size.x, sprite.size.y);
 		pos = new Vector2i(200, Main.HEIGHT / 2 - size.y / 2);
 		fireRate = 1000000000 / 5;
 		speed = 5;
+		life = 1000;
+		damage = 100;
+		projectileDir = PR_RIGHT;
+		
+		// loading the highscore
+		highscore = 0;
+		// TODO: load highscore
 	}
 	
 	private void move(){
 		if(Input.keyDown(KeyEvent.VK_UP)){
-			pos.y -= speed;
+			if(pos.y > 0)
+				pos.y -= speed;
+			else
+				pos.y = 0;
 		}else if(Input.keyDown(KeyEvent.VK_DOWN)){
-			pos.y += speed;
-		}
-	}
-	
-	private void shoot(){
-		if(System.nanoTime() - attackTimer >= fireRate){
-			attackTimer = System.nanoTime();
-			if(Input.keyDown(KeyEvent.VK_SPACE))
-				projectiles.add(new Projectile());
+			if(pos.y < Main.HEIGHT - size.y)
+				pos.y += speed;
+			else
+				pos.y = Main.HEIGHT - size.y;
 		}
 	}
 	
 	public void update() {
+		checkLife();
 		updateProjectiles();
 		move();
 		shoot();
 	}
 	
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
 		renderProjectiles(g);
-		g.drawImage(img, pos.x, pos.y, null);
+		sprite.render(g, pos);
 	}
 
+	public void kill(EntityType type){
+		if(type == EntityType.ENEMY){
+			Game.addScore(10);
+		}else if(type == EntityType.BOSS){
+			Game.addScore(2000);
+		}else if(type == EntityType.CIVILIAN){
+			Game.addScore(-100);
+		}
+	}
+	
+	public void die() {
+		
+	}
+	
 }

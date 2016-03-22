@@ -1,0 +1,13 @@
+package com.miss_click.remove_the_kebab.graphics;
+
+public class Button {
+
+	public void update(){
+		
+	}
+	
+	public void render(Graphics g){
+		
+	}
+	
+}

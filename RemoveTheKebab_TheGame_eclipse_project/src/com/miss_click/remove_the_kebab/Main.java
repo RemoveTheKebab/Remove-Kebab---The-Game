@@ -3,24 +3,36 @@ package com.miss_click.remove_the_kebab;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.swing.JFrame;
 
-import com.miss_click.remove_the_kebab.states.Game;
+import com.miss_click.remove_the_kebab.states.MainMenu;
 import com.miss_click.remove_the_kebab.states.StateManager;
 import com.miss_click.remove_the_kebab.util.Input;
+import com.miss_click.remove_the_kebab.util.SpriteManager;
 
 public class Main implements Runnable{
 
+	// AUTHORS
+	public static final String JAN_ALES = "Jan Aleš Mlinar"; 						// this game was his idea
+	public static final String ANDRAZ_CEPIC = "Andraž Cepiè, main programmer";
+	public static final String MATEVZ_VRES = "Matevž Vreš, main designer";
+	public static final String GASPER_BOZIC = "Gašper Božiè, artist";
+	public static final String DAVID_BLENKUS = "David Blenkuš, artist";
+	
 	// CONSTANTS
 	public static final String TITLE = "Remove The Kebab - The Game";
 	public static final byte VERSION = 0x01;
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
 	
-	// GRAPHICS
+	// Graphics2D
 	private JFrame frame;
 	private Canvas canvas;
 	
@@ -30,13 +42,15 @@ public class Main implements Runnable{
 	
 	// MANAGERS
 	public static StateManager stateManager;
+	public static SpriteManager spriteManager;
 	
 	public Main(){
-		// graphics init
+		// Graphics2D init
 		canvas = new Canvas();
 		canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		frame = new JFrame(TITLE + "  v."+ VERSION);
 		frame.setResizable(false);
+		frame.setUndecorated(false);
 		frame.add(canvas);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
@@ -44,6 +58,7 @@ public class Main implements Runnable{
 		frame.setVisible(true);
 		
 		// managers init
+		spriteManager = new SpriteManager();
 		stateManager = new StateManager();
 		Input input = new Input();
 		canvas.addKeyListener(input);
@@ -91,8 +106,10 @@ public class Main implements Runnable{
 	}
 	
 	private void init(){
+		loadTextures();
+		
 		canvas.requestFocus();
-		stateManager.setState(new Game());
+		stateManager.setState(new MainMenu());
 	}
 	
 	private void update(){
@@ -106,7 +123,8 @@ public class Main implements Runnable{
 			return;
 		}
 		
-		Graphics g = bs.getDrawGraphics();
+		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
+		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON); // Text antialias
 		
 		// clearing the screen
 		g.setColor(Color.black);
@@ -115,6 +133,21 @@ public class Main implements Runnable{
 		
 		g.dispose();
 		bs.show();
+	}
+	
+	private void loadTextures(){
+		URI uri;
+		try {
+			uri = getClass().getResource("/textures/").toURI();
+			File dir = new File(uri);
+			String[] files = dir.list();
+			for(int i=0; i < files.length; i++){
+				spriteManager.loadSpriteSheet(files[i]);
+			}
+			
+		} catch (URISyntaxException e) {
+			e.printStackTrace(); 
+		}
 	}
 	
 	public static void main(String[] args){

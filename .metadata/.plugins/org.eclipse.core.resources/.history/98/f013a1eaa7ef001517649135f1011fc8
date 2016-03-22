@@ -1,0 +1,23 @@
+package com.miss_click.remove_the_kebab.states;
+
+import java.awt.Graphics;
+
+import com.miss_click.remove_the_kebab.graphics.Button;
+
+public class MainMenu extends State{
+
+	private Button playButton;
+	
+	public MainMenu(){
+		
+	}
+	
+	public void update() {
+		
+	}
+
+	public void render(Graphics g) {
+		
+	}
+
+}

@@ -1,0 +1,30 @@
+package com.miss_click.remove_the_kebab.entities;
+
+import java.awt.Graphics;
+
+import com.miss_click.remove_the_kebab.graphics.Sprite;
+
+public class Projectile {
+
+	private Sprite sprite;
+	private int speed;
+	private boolean dead = false;
+	
+	public Projectile(int x, int y, boolean dir){
+		if(dir)
+			speed = 6;
+		else
+			speed = -6;
+	}
+	
+	public void render(Graphics g){
+		
+	}
+	
+	public void update(){
+		if(!dead){
+			
+		}
+	}
+	
+}
