@@ -24,10 +24,10 @@ public class Main implements Runnable{
 
 	// AUTHORS
 	public static final String JAN_ALES = "Jan Aleš Mlinar"; 						// this game was his idea
-	public static final String ANDRAZ_CEPIC = "Andraž Cepiè, main programmer";
-	public static final String MATEVZ_VRES = "Matevž Vreš, main designer";
-	public static final String GASPER_BOZIC = "Gašper Božiè, artist";
-	public static final String DAVID_BLENKUS = "David Blenkuš, artist";
+	public static final String ANDRAZ_CEPIC = "Andraž Cepiè, Main programmer";
+	public static final String MATEVZ_VRES = "Matevž Vreš, Main designer";
+	public static final String GASPER_BOZIC = "Gašper Božiè, Lead artist";
+	public static final String DAVID_BLENKUS = "David Blenkuš, co-artist";
 	
 	// CONSTANTS
 	public static final String TITLE = "Remove The Kebab - The Game";
@@ -48,7 +48,7 @@ public class Main implements Runnable{
 	public static SpriteManager spriteManager;
 	
 	public Main(){
-		// Graphics2D init
+		// Graphics2D initial
 		canvas = new Canvas();
 		canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		frame = new JFrame(TITLE + "   - " + VERSION);
@@ -60,7 +60,7 @@ public class Main implements Runnable{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
-		// managers init
+		// managers initial
 		spriteManager = new SpriteManager();
 		stateManager = new StateManager();
 		Input input = new Input();
