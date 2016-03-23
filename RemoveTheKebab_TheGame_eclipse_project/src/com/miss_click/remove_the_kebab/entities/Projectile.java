@@ -26,10 +26,10 @@ public class Projectile {
 		this.ownerID = ownerID;
 		
 		if(dir){
-			speed = 6;
+			speed = 10;
 		}else{
 			sprite.flipX();
-			speed = -6;
+			speed = -10;
 		}
 	}
 	

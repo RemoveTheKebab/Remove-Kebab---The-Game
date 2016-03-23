@@ -1,0 +1,23 @@
+0.1 2016-03-23:
+    - started the project
+    - created the basic GDD (Game Development Document), will be more detailed later
+    - added rendering system (Java Swing & AWT)
+    - added input handling
+    - added game states
+    - added sprites
+    - added spriteManger with method for loading sprite sheets
+    - added loading all resources when the game starts
+    - added basic entity system 
+    - added player
+    - added enemy
+    - added enemy spawning system 
+    - added basic main menu screen
+    - added projectiles 
+    - added basic GUI(e.g. button)
+    P.S. Refugee, TestBoss, isis sprite and main_menu_b sprite are just for testing, will be removed / changed.
+TODO:
+    - add animation
+    - add particles (pixel)
+    - add player health bar
+    - add background image to the game scene
+    - calibrate spawning system

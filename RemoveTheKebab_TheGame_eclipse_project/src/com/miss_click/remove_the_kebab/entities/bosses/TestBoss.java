@@ -7,6 +7,7 @@ import com.miss_click.remove_the_kebab.entities.Enemy;
 import com.miss_click.remove_the_kebab.entities.Entity;
 import com.miss_click.remove_the_kebab.entities.EntityType;
 import com.miss_click.remove_the_kebab.states.Game;
+import com.miss_click.remove_the_kebab.util.Vector2f;
 import com.miss_click.remove_the_kebab.util.Vector2i;
 
 public class TestBoss extends Enemy{
@@ -16,14 +17,14 @@ public class TestBoss extends Enemy{
 		type = EntityType.BOSS;
 		
 		// graphics
-		sprite = Main.spriteManager.getSprite("bird");
+		sprite = Main.spriteManager.getSprite("isis");
 		
 		// properties
 		size = new Vector2i(sprite.size.x, sprite.size.y);
-		pos = new Vector2i(0,0);
+		pos = new Vector2f(Main.WIDTH, Main.HEIGHT / 2 - size.y / 2);
 		fireRate = 1000000000 / 5;
-		speed = -1;
-		life = 1000;
+		speed = - 0.5f;
+		life = 2000;
 		damage = 100;
 		projectileDir = PR_LEFT;
 		
@@ -31,7 +32,8 @@ public class TestBoss extends Enemy{
 	}
 	
 	public void renderEnemy(Graphics2D g) {
-		sprite.render(g, pos);
+		sprite.render(g, (int)pos.x, (int)pos.y);
+		renderHealthBar(g);
 	}
 
 	public void updateEnemy() {

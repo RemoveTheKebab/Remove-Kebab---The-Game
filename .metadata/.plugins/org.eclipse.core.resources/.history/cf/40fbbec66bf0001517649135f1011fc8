@@ -1,0 +1,163 @@
+package com.miss_click.remove_the_kebab.entities;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+import com.miss_click.remove_the_kebab.Main;
+import com.miss_click.remove_the_kebab.entities.bosses.TestBoss;
+import com.miss_click.remove_the_kebab.entities.enemies.TestEnemy;
+import com.miss_click.remove_the_kebab.graphics.FontsColors;
+import com.miss_click.remove_the_kebab.states.Game;
+
+public class EnemySpawner {
+
+	public static final int ENEMY_COUNT = 1;
+	public static final int BOSS_COUNT = 1;
+	public static final long MIN_BOSS_PERIOID = 500000000L; 	// 2.5 seconds
+	public static final long MIN_SPAW_PERIOD = 250000000L; 		// 1/4 second
+	public static final long MAX_SPAW_PERIOD = 3000000000L; 	// 3 seconds
+	public static final long FADE_TIME = 1000000000L;
+	public static final long SHOW_TEXT_TIME = 2000000000L;
+	public static final int START_SCORE_REQ = 100;
+	public static final String BOSS = "BOSS";
+	public static final String REFUGEES = "REFUGEES";
+	public static int ADD_SCORE_REQ = 4000;
+	
+	private long spawnTimer = System.nanoTime();
+	private long spawnPeriod = MAX_SPAW_PERIOD;
+	private long changeTimer = System.nanoTime();
+	
+	// bosses
+	private boolean bossTime = false;
+	private boolean bossSpawned = false;
+	private int bossLevel = 1;
+	private int bossSpawnCounter = 0;
+	private int bossCounter = 0;
+	private int requiredScore = START_SCORE_REQ;
+	private long bossTimer = System.nanoTime();
+	
+	// graphics
+	private boolean drawing = false;
+	private int fade = 1;
+	private int fadeAdd = 1;
+	private long fadeTimer = System.nanoTime();
+	private String popUp = "";
+	
+	public void render(Graphics2D g){
+		if(drawing){
+			System.out.println(fade);
+			g.setFont(FontsColors.TITLE_FONT);
+			g.setColor(new Color(255, 0, 0, fade));
+			g.drawString(popUp, Main.WIDTH/2 , Main.HEIGHT / 2 + 20);
+		}
+	}
+	
+	public void update(){
+		// checking if boss time
+		if(Game.getScore() > requiredScore){
+			requiredScore +=  ADD_SCORE_REQ; 
+			ADD_SCORE_REQ += 2000 * bossLevel;
+			bossTime = true;
+			drawing = true;
+			fade = 1;
+			changeTimer = System.nanoTime();
+			
+			if(bossSpawnCounter >= bossLevel){
+				bossLevel++;
+				bossSpawnCounter = 0;
+			}
+		}
+		
+		if(System.nanoTime() - changeTimer >= MAX_SPAW_PERIOD){
+			if(bossTime){
+				popUp = BOSS;
+				spawnBoss();
+			}else{
+				spawnEnemy();	
+			}
+		}
+		
+		if(drawing){
+			if(fade < 255 && fade > 0)
+				if(System.nanoTime() - fadeTimer >= FADE_TIME / 256){
+					fadeTimer = System.nanoTime();
+					fade += fadeAdd;
+				}
+			else if(fade >= 255)
+				if(System.nanoTime() - fadeTimer >= SHOW_TEXT_TIME){
+					fadeTimer = System.nanoTime();
+					fadeAdd = -fadeAdd;
+					fade += fadeAdd;
+				}
+			else
+				fadeAdd = 1;
+		}
+	}
+	
+	private void spawnEnemy(){
+		if(spawnPeriod > MIN_SPAW_PERIOD)
+			spawnPeriod -= 50000;
+		else
+			spawnPeriod = MIN_SPAW_PERIOD;
+		
+		if(System.nanoTime() - spawnTimer >= spawnPeriod){
+			spawnTimer = System.nanoTime();
+			spawnRandomEnemy();
+			System.out.println(spawnPeriod);
+		}
+	}
+	
+	
+	private void spawnBoss(){
+		if(!bossSpawned){
+			if(System.nanoTime() - bossTimer >= MIN_BOSS_PERIOID){
+				bossTimer = System.nanoTime();
+				
+				spawnRandomBoss();
+				
+				bossCounter++;
+				if(bossCounter > bossLevel){
+					bossSpawned = true;
+					bossSpawnCounter++;
+				}
+			}
+		}else{
+			if(bossCounter == 0){
+				bossTime = false;
+				bossSpawned = false;
+				drawing = false;
+				changeTimer = System.nanoTime();
+			}
+		}
+	}
+	
+	private void spawnRandomBoss(){
+		Enemy enemy = null;
+		int randomGen = (int)(Math.random() * BOSS_COUNT - 1);
+		switch(randomGen){
+		case 0:
+			enemy = new TestBoss();
+			break;
+		}
+		
+		Game.entityManager.addEntity(enemy);
+	}
+	
+	private void spawnRandomEnemy(){
+		Enemy enemy = null;
+		int randomGen = (int)(Math.random() * ENEMY_COUNT - 1);
+		int randomCount = (int)(Math.random() * 2 + 1);
+		
+		switch(randomGen){
+		case 0:
+			for(int i=0; i < randomCount; i++)
+				Game.entityManager.addEntity(new TestEnemy());
+			break;
+		}
+	}
+	
+	public void removeBoss(){
+		bossCounter--;
+	}
+	
+}

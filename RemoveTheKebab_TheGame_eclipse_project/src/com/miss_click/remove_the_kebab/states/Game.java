@@ -1,36 +1,38 @@
 package com.miss_click.remove_the_kebab.states;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 
 import com.miss_click.remove_the_kebab.Main;
 import com.miss_click.remove_the_kebab.entities.EnemySpawner;
 import com.miss_click.remove_the_kebab.entities.Player;
+import com.miss_click.remove_the_kebab.graphics.FontsColors;
+import com.miss_click.remove_the_kebab.graphics.Sprite;
 import com.miss_click.remove_the_kebab.util.EntityManager;
 import com.miss_click.remove_the_kebab.util.Input;
 import com.sun.glass.events.KeyEvent;
 
 public class Game extends State{
 
+	// managers
 	public static EntityManager entityManager;
 	public static EnemySpawner enemySpawner;
 	
+	// game logic, properties and variables
 	public static final int BORDER_X = 260;
-	public static final Color PAUSE_SHADE = new Color(0,0,0,150);
-	public static final Color PAUSE_TXT = new Color(200,200,200);
-	public static final Color PAUSE_RED_TXT = new Color(255,0,0);
-	public static final Font PAUSE_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 32);
-	public static final Font PAUSE_RED_FONT = new Font(Font.SANS_SERIF, Font.BOLD + Font.ITALIC, 28);
-	public static final Font SCORE_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 28);
-	
+	public static final int BORDER_WIDTH = 10;
 	private static long score = 0;
 	private boolean paused = false;
+	
+	// graphics
+	private Sprite background;
 	
 	public Game(){
 		entityManager = new EntityManager();
 		entityManager.addEntity(new Player());
 		enemySpawner = new EnemySpawner();
+		score = 0;
+		background = Main.spriteManager.getSprite("main_menu_b");
 	}
 	
 	public void update(){
@@ -39,7 +41,7 @@ public class Game extends State{
 		}
 		
 		if(!paused){
-			enemySpawner.spawnEnemy();
+			enemySpawner.update();
 			entityManager.update();
 		}else{
 			if(Input.keyPressed(KeyEvent.VK_M)){
@@ -49,24 +51,30 @@ public class Game extends State{
 	}
 	
 	public void render(Graphics2D g){
+		background.render(g, 0,0);
+		
+		// drawing the border -- TODO: remove
+		g.setColor(Color.GRAY);
+		g.fillRect(BORDER_X - BORDER_WIDTH, 0, BORDER_WIDTH, Main.HEIGHT);
+		
 		entityManager.render(g);
 		
 		// drawing the score
-		g.setColor(PAUSE_TXT);
-		g.setFont(SCORE_FONT);
+		g.setColor(FontsColors.PAUSE_TXT);
+		g.setFont(FontsColors.SCORE_FONT);
 		g.drawString("Score: " + score, 1000, 40);
 		
 		if(paused){
-			g.setColor(PAUSE_SHADE);
+			g.setColor(FontsColors.PAUSE_SHADE);
 			g.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
-			g.setColor(PAUSE_TXT);
-			g.setFont(PAUSE_FONT);
+			g.setColor(FontsColors.PAUSE_TXT);
+			g.setFont(FontsColors.BIG_FONT);
 			g.drawString("PAUSED - press ESC to resume", 400, Main.HEIGHT / 2);
-			g.setColor(PAUSE_RED_TXT);
-			g.setFont(PAUSE_RED_FONT);
+			g.setColor(FontsColors.PAUSE_RED_TXT);
+			g.setFont(FontsColors.PAUSE_RED_FONT);
 			g.drawString("... with the massacre", 800, Main.HEIGHT / 2 + 40);
-			g.setColor(PAUSE_TXT);
-			g.setFont(PAUSE_FONT);
+			g.setColor(FontsColors.PAUSE_TXT);
+			g.setFont(FontsColors.BIG_FONT);
 			g.drawString("OR press M to get back to Main Menu", 400, Main.HEIGHT / 2 + 120);
 		}
 	}

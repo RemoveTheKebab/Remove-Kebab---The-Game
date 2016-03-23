@@ -53,8 +53,8 @@ public class Input implements KeyListener, MouseMotionListener, MouseListener{
     }
 	
 	
-	private static boolean[] keys = new boolean[512];
-	private static boolean[] keysP = new boolean[512];
+	private static boolean[] keys = new boolean[1024];
+	private static boolean[] keysP = new boolean[1024];
 	
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = true;

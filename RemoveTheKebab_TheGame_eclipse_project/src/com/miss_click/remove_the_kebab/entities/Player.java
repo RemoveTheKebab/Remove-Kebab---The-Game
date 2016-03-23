@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import com.miss_click.remove_the_kebab.Main;
 import com.miss_click.remove_the_kebab.states.Game;
 import com.miss_click.remove_the_kebab.util.Input;
+import com.miss_click.remove_the_kebab.util.Vector2f;
 import com.miss_click.remove_the_kebab.util.Vector2i;
 import com.sun.glass.events.KeyEvent;
 
@@ -16,13 +17,13 @@ public class Player extends Entity{
 		type = EntityType.PLAYER;
 		
 		// graphics
-		sprite = Main.spriteManager.getSprite("bird");
+		sprite = Main.spriteManager.getSprite("isis");
 		
 		// initializing properties
 		size = new Vector2i(sprite.size.x, sprite.size.y);
-		pos = new Vector2i(200, Main.HEIGHT / 2 - size.y / 2);
-		fireRate = 10000000000L / 10;
-		speed = 5;
+		pos = new Vector2f(Game.BORDER_X - size.x - Game.BORDER_WIDTH - 3, Main.HEIGHT / 2 - size.y / 2);
+		fireRate = 10000000000L / 40;
+		speed = 6;
 		life = 1000;
 		damage = 100;
 		projectileDir = PR_RIGHT;
@@ -57,17 +58,17 @@ public class Player extends Entity{
 	
 	public void render(Graphics2D g) {
 		renderProjectiles(g);
-		sprite.render(g, pos);
+		sprite.render(g, (int)pos.x, (int)pos.y);
 	}
 
 	public void kill(EntityType type){
 		if(type == EntityType.ENEMY){
-			Game.addScore(10);
+			Game.addScore(100);
 		}else if(type == EntityType.BOSS){
 			Game.addScore(2000);
 			Game.enemySpawner.removeBoss();
 		}else if(type == EntityType.CIVILIAN){
-			Game.addScore(-100);
+			Game.addScore(-300);
 		}
 	}
 	

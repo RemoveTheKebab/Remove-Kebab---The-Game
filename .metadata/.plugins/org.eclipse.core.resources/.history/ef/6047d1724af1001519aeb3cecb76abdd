@@ -1,0 +1,87 @@
+package com.miss_click.remove_the_kebab.states;
+
+import java.awt.Graphics2D;
+
+import com.miss_click.remove_the_kebab.Main;
+import com.miss_click.remove_the_kebab.entities.EnemySpawner;
+import com.miss_click.remove_the_kebab.entities.Player;
+import com.miss_click.remove_the_kebab.graphics.FontsColors;
+import com.miss_click.remove_the_kebab.graphics.Sprite;
+import com.miss_click.remove_the_kebab.util.EntityManager;
+import com.miss_click.remove_the_kebab.util.Input;
+import com.sun.glass.events.KeyEvent;
+
+public class Game extends State{
+
+	public static EntityManager entityManager;
+	public static EnemySpawner enemySpawner;
+	
+	public static final int BORDER_X = 260;
+	
+	private static long score = 0;
+	private boolean paused = false;
+	
+	// graphics
+	private Sprite background;
+	
+	public Game(){
+		entityManager = new EntityManager();
+		entityManager.addEntity(new Player());
+		enemySpawner = new EnemySpawner();
+		score = 0;
+		background = Main.spriteManager.getSprite("main_menu_b");
+	}
+	
+	public void update(){
+		if(Input.keyPressed(KeyEvent.VK_ESCAPE)){
+			paused = !paused;
+		}
+		
+		if(!paused){
+			enemySpawner.update();
+			entityManager.update();
+		}else{
+			if(Input.keyPressed(KeyEvent.VK_M)){
+				Main.stateManager.setState(new MainMenu());
+			}
+		}
+	}
+	
+	public void render(Graphics2D g){
+		background.render(g, 0,0);
+		
+		entityManager.render(g);
+		
+		// drawing the score
+		g.setColor(FontsColors.PAUSE_TXT);
+		g.setFont(FontsColors.SCORE_FONT);
+		g.drawString("Score: " + score, 1000, 40);
+		
+		if(paused){
+			g.setColor(FontsColors.PAUSE_SHADE);
+			g.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+			g.setColor(FontsColors.PAUSE_TXT);
+			g.setFont(FontsColors.BIG_FONT);
+			g.drawString("PAUSED - press ESC to resume", 400, Main.HEIGHT / 2);
+			g.setColor(FontsColors.PAUSE_RED_TXT);
+			g.setFont(FontsColors.PAUSE_RED_FONT);
+			g.drawString("... with the massacre", 800, Main.HEIGHT / 2 + 40);
+			g.setColor(FontsColors.PAUSE_TXT);
+			g.setFont(FontsColors.BIG_FONT);
+			g.drawString("OR press M to get back to Main Menu", 400, Main.HEIGHT / 2 + 120);
+		}
+	}
+	
+	public static long getScore(){
+		return score;
+	}
+	
+	public static void setScore(long score){
+		Game.score = score;
+	}
+	
+	public static void addScore(long score){
+		Game.score += score;
+	}
+	
+}

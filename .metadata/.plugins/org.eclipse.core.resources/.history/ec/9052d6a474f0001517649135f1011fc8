@@ -1,0 +1,44 @@
+package com.miss_click.remove_the_kebab.entities;
+
+import java.awt.Graphics2D;
+
+import com.miss_click.remove_the_kebab.Main;
+import com.miss_click.remove_the_kebab.graphics.FontsColors;
+import com.miss_click.remove_the_kebab.states.Game;
+import com.miss_click.remove_the_kebab.util.Vector2i;
+
+public abstract class Enemy extends Entity{
+	
+	protected Vector2i healthBar;
+	
+	protected void initEnemy(){
+		pos.x = Main.WIDTH + (int)(Math.random() * 50);
+		pos.y = (int)(Math.random() * (Main.HEIGHT - size.y));
+		healthBar = new Vector2i(100, 20);
+	}
+	
+	public void update() {
+		checkLife();
+		
+		// movement
+		if(pos.x > Game.BORDER_X)
+			pos.x += speed;
+		else 
+			pos.x = Game.BORDER_X;
+		
+		updateEnemy();
+	}
+
+	public void render(Graphics2D g) {	
+		renderEnemy(g);
+	}
+	
+	protected void renderHealthBar(Graphics2D g){
+		g.setColor(FontsColors.BOSS_HEALTH_BAR);
+		g.fillRect(pos.x, pos.y - 25, 100, 20);
+	}
+	
+	public abstract void renderEnemy(Graphics2D g);
+	public abstract void updateEnemy();
+	
+}

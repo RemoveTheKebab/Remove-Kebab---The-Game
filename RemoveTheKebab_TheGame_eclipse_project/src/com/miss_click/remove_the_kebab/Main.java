@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import com.miss_click.remove_the_kebab.graphics.FontsColors;
 import com.miss_click.remove_the_kebab.states.MainMenu;
 import com.miss_click.remove_the_kebab.states.StateManager;
 import com.miss_click.remove_the_kebab.util.Input;
@@ -133,7 +134,7 @@ public class Main implements Runnable{
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		stateManager.render(g);
 		
-		g.setFont(MainMenu.VERSION_FONT);
+		g.setFont(FontsColors.VERSION_FONT);
 		g.setColor(Color.DARK_GRAY);
 		g.drawString("version: " + VERSION, 1100, 700);
 		

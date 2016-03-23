@@ -1,21 +1,23 @@
 package com.miss_click.remove_the_kebab.entities;
 
 import com.miss_click.remove_the_kebab.entities.bosses.TestBoss;
-import com.miss_click.remove_the_kebab.entities.enemies.TestEnemy;
+import com.miss_click.remove_the_kebab.entities.enemies.Refugee;
 import com.miss_click.remove_the_kebab.states.Game;
 
 public class EnemySpawner {
 
 	public static final int ENEMY_COUNT = 1;
 	public static final int BOSS_COUNT = 1;
-	public static final long MIN_BOSS_PERIOID = 500000000L; 	// 2.5 seconds
-	public static final long MIN_SPAW_PERIOD = 250000000L; 		// 1/4 second
-	public static final long MAX_SPAW_PERIOD = 3000000000L; 	// 3 seconds
-	public static final int START_SCORE_REQ = 1000;
-	public static int ADD_SCORE_REQ = 4000;
+	public static final long MIN_BOSS_PERIOID = 500000000L; 	// 0.5 s
+	public static final long MIN_SPAWN_PERIOD = 1000000000; 	// 0.25 s
+	public static final long MAX_SPAWN_PERIOD = 3000000000L; 	// 3 s
+	public static final long SHOW_TEXT_TIME = 2000000000L;
+	public static final int START_SCORE_REQ = 3000;
+	public static int ADD_SCORE_REQ = 10000;
 	
 	private long spawnTimer = System.nanoTime();
-	private long spawnPeriod = MAX_SPAW_PERIOD;
+	private long spawnPeriod = MAX_SPAWN_PERIOD;
+	private long changeTimer = System.nanoTime();
 	
 	// bosses
 	private boolean bossTime = false;
@@ -25,54 +27,68 @@ public class EnemySpawner {
 	private int bossCounter = 0;
 	private int requiredScore = START_SCORE_REQ;
 	private long bossTimer = System.nanoTime();
+
+	// TODO : organize in waves 
 	
-	public void spawnEnemy(){
+	public void update(){
 		// checking if boss time
 		if(Game.getScore() > requiredScore){
-			requiredScore +=  ADD_SCORE_REQ; 
-			ADD_SCORE_REQ += 2000 * bossLevel;
-			bossTime = true;
-			
-			if(bossSpawnCounter >= bossLevel){
-				bossLevel++;
-				bossSpawnCounter = 0;
+			if(Game.entityManager.getFirtsByType(EntityType.ENEMY) == null){
+				requiredScore +=  ADD_SCORE_REQ; 
+				ADD_SCORE_REQ += 2000 * bossLevel;
+				
+				if(bossSpawnCounter >= bossLevel){
+					bossLevel++;
+					bossSpawnCounter = 0;
+				}
+			}else{
+				bossTime = true;
+				changeTimer = System.nanoTime();
 			}
 		}
 		
-		if(bossTime){
-			if(!bossSpawned){
-				if(System.nanoTime() - bossTimer >= MIN_BOSS_PERIOID){
-					bossTimer = System.nanoTime();
-					
-					spawnRandomBoss();
-					
-					bossCounter++;
-					if(bossCounter > bossLevel){
-						bossSpawned = true;
-						bossSpawnCounter++;
-					}
-				}
+		if(System.nanoTime() - changeTimer >= MAX_SPAWN_PERIOD){
+			if(bossTime){
+				spawnBoss();
 			}else{
-				if(bossCounter == 0){
-					bossTime = false;
-					bossSpawned = false;
-				}
-			}
-		}else{
-			if(spawnPeriod > MIN_SPAW_PERIOD)
-				spawnPeriod -= 200;
-			else
-				spawnPeriod = MIN_SPAW_PERIOD;
-			
-			if(System.nanoTime() - spawnTimer >= spawnPeriod){
-				spawnTimer = System.nanoTime();
-				spawnRandomEnemy();
+				spawnEnemy();	
 			}
 		}
 	}
 	
-	public void removeBoss(){
-		bossCounter--;
+	private void spawnEnemy(){
+		if(spawnPeriod > MIN_SPAWN_PERIOD)
+			spawnPeriod -= 200000;
+		else
+			spawnPeriod = MIN_SPAWN_PERIOD;
+		
+		if(System.nanoTime() - spawnTimer >= spawnPeriod){
+			spawnTimer = System.nanoTime();
+			spawnRandomEnemy();
+		}
+	}
+	
+	
+	private void spawnBoss(){
+		if(!bossSpawned){
+			if(System.nanoTime() - bossTimer >= MIN_BOSS_PERIOID){
+				bossTimer = System.nanoTime();
+				
+				spawnRandomBoss();
+				
+				bossCounter++;
+				if(bossCounter >= bossLevel){
+					bossSpawned = true;
+					bossSpawnCounter++;
+				}
+			}
+		}else{
+			if(bossCounter == 0){
+				bossTime = false;
+				bossSpawned = false;
+				changeTimer = System.nanoTime();
+			}
+		}
 	}
 	
 	private void spawnRandomBoss(){
@@ -90,13 +106,18 @@ public class EnemySpawner {
 	private void spawnRandomEnemy(){
 		Enemy enemy = null;
 		int randomGen = (int)(Math.random() * ENEMY_COUNT - 1);
-		int randomCount = (int)(Math.random() * 2 + 1);
 		
 		switch(randomGen){
 		case 0:
+			int randomCount = (int)(Math.random() * 5 + 5);
 			for(int i=0; i < randomCount; i++)
-				Game.entityManager.addEntity(new TestEnemy());
+				Game.entityManager.addEntity(new Refugee());
 			break;
 		}
 	}
+	
+	public void removeBoss(){
+		bossCounter--;
+	}
+	
 }

@@ -4,9 +4,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import com.miss_click.remove_the_kebab.graphics.Sprite;
-import com.miss_click.remove_the_kebab.util.Input;
+import com.miss_click.remove_the_kebab.util.Vector2f;
 import com.miss_click.remove_the_kebab.util.Vector2i;
-import com.sun.glass.events.KeyEvent;
 
 public abstract class Entity {
 
@@ -17,8 +16,8 @@ public abstract class Entity {
 	protected EntityType type;
 	protected int id;
 	protected boolean dead = false;
-	protected Vector2i pos;
-	protected int speed;
+	protected Vector2f pos;
+	protected float speed;
 	protected Vector2i size;
 	protected int life;
 	protected int damage;
@@ -70,14 +69,15 @@ public abstract class Entity {
 			if(System.nanoTime() - attackTimer >= fireRate){
 				attackTimer = System.nanoTime();
 				if(projectileDir)
-					projectiles.add(new Projectile(damage, pos.x + size.x, pos.y + size.y / 2, true, id));
+					projectiles.add(new Projectile(damage, (int)pos.x + size.x, (int)pos.y + size.y / 2, true, id));
 				else
-					projectiles.add(new Projectile(damage, pos.x, pos.y + size.y / 2, false, id));
+					projectiles.add(new Projectile(damage, (int)pos.x, (int)pos.y + size.y / 2, false, id));
 			}
 	}
 	
 	public void hit(int dmg){
 		life -= damage;
+		pos.x += 2;
 	}
 
 	// abstract methods
@@ -91,7 +91,7 @@ public abstract class Entity {
 		return size;
 	}
 	
-	public Vector2i getPos(){
+	public Vector2f getPos(){
 		return pos;
 	}
 	

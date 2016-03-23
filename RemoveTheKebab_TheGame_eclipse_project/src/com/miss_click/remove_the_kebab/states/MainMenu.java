@@ -1,21 +1,14 @@
 package com.miss_click.remove_the_kebab.states;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 
 import com.miss_click.remove_the_kebab.Main;
 import com.miss_click.remove_the_kebab.graphics.Button;
+import com.miss_click.remove_the_kebab.graphics.FontsColors;
 import com.miss_click.remove_the_kebab.graphics.Sprite;
 import com.miss_click.remove_the_kebab.util.ButtonEvent;
 
 public class MainMenu extends State{
-
-	public static final Color FONT_COLOR = new Color(200,200,200);
-	public static final Color FONT_COLOR_IDEA = new Color(56,121,196);
-	public static final Font CREDITS_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 20);
-	public static final Font TITLE_FONT = new Font(Font.SANS_SERIF, Font.BOLD,70);
-	public static final Font VERSION_FONT = new Font(Font.SANS_SERIF, Font.BOLD,16);
 	
 	private Button playButton;
 	private Sprite background;
@@ -41,10 +34,10 @@ public class MainMenu extends State{
 		playButton.render(g);
 		
 		// rendering credits
-		g.setColor(FONT_COLOR_IDEA);
-		g.setFont(CREDITS_FONT);
+		g.setColor(FontsColors.FONT_COLOR_IDEA);
+		g.setFont(FontsColors.CREDITS_FONT);
 		g.drawString("Idea by " + Main.JAN_ALES, 50, 500);
-		g.setColor(FONT_COLOR);
+		g.setColor(FontsColors.FONT_COLOR);
 		g.drawString("MADE BY:", 50, 550);
 		g.drawString(" - " + Main.ANDRAZ_CEPIC, 50, 580);
 		g.drawString(" - " + Main.MATEVZ_VRES, 50, 610);
@@ -52,8 +45,8 @@ public class MainMenu extends State{
 		g.drawString(" - " + Main.DAVID_BLENKUS, 50, 670);
 		
 		// rendering the title
-		g.setColor(Game.PAUSE_RED_TXT);
-		g.setFont(TITLE_FONT);
+		g.setColor(FontsColors.PAUSE_RED_TXT);
+		g.setFont(FontsColors.TITLE_FONT);
 		g.drawString("Remove Kebab - The Game", 200, 180);
 	}
 

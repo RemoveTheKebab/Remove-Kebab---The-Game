@@ -1,0 +1,79 @@
+package com.miss_click.remove_the_kebab.entities;
+
+import java.awt.Graphics2D;
+
+import com.miss_click.remove_the_kebab.Main;
+import com.miss_click.remove_the_kebab.states.Game;
+import com.miss_click.remove_the_kebab.util.Input;
+import com.miss_click.remove_the_kebab.util.Vector2f;
+import com.miss_click.remove_the_kebab.util.Vector2i;
+import com.sun.glass.events.KeyEvent;
+
+public class Player extends Entity{
+
+	private int highscore;
+	
+	public Player(){
+		type = EntityType.PLAYER;
+		
+		// graphics
+		sprite = Main.spriteManager.getSprite("bird");
+		
+		// initializing properties
+		size = new Vector2i(sprite.size.x, sprite.size.y);
+		pos = new Vector2f(200, Main.HEIGHT / 2 - size.y / 2);
+		fireRate = 10000000000L / 40;
+		speed = 6;
+		life = 1000;
+		damage = 100;
+		projectileDir = PR_RIGHT;
+		
+		// loading the highscore
+		highscore = 0;
+		// TODO: load highscore
+	}
+	
+	private void move(){
+		if(Input.keyDown(KeyEvent.VK_UP)){
+			if(pos.y > 0)
+				pos.y -= speed;
+			else
+				pos.y = 0;
+		}else if(Input.keyDown(KeyEvent.VK_DOWN)){
+			if(pos.y < Main.HEIGHT - size.y)
+				pos.y += speed;
+			else
+				pos.y = Main.HEIGHT - size.y;
+		}
+	}
+	
+	public void update() {
+		checkLife();
+		updateProjectiles();
+		move();
+		
+		if(Input.keyDown(KeyEvent.VK_SPACE))
+			shoot();
+	}
+	
+	public void render(Graphics2D g) {
+		renderProjectiles(g);
+		sprite.render(g, (int)pos.x, (int)pos.y);
+	}
+
+	public void kill(EntityType type){
+		if(type == EntityType.ENEMY){
+			Game.addScore(100);
+		}else if(type == EntityType.BOSS){
+			Game.addScore(2000);
+			Game.enemySpawner.removeBoss();
+		}else if(type == EntityType.CIVILIAN){
+			Game.addScore(-300);
+		}
+	}
+	
+	public void die() {
+		
+	}
+	
+}
